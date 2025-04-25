@@ -73,12 +73,11 @@
 
     .image-container {
       flex: 2;
-      position: relative;
       background-size: cover;
       background-position: center;
+      min-height: 100vh;
+      position: relative;
       transition: background-image 1s ease-in-out;
-      height: 100vh;
-      color: white;
     }
 
     .overlay-text {
@@ -111,36 +110,10 @@
       margin: 20px 0;
     }
 
-    
-@media (max-width: 768px) {
-  .container {
-    display: block;
-    width: 100%;
-  }
-
-  .image-container {
-    height: 300px;
-    width: 100%;
-    position: relative;
-  }
-
-  .details-panel {
-    height: auto;
-    max-height: none;
-    overflow-y: visible;
-  }
-
-  .menu-btn {
-    padding: 10px 18px;
-    font-size: 1rem;
-  }
-
-  .sidebar a {
-    font-size: 1.1rem;
-    padding: 16px;
-  }
-}
-
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
 
       .image-container {
         height: 50vh;
