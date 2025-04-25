@@ -111,10 +111,36 @@
       margin: 20px 0;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+    
+@media (max-width: 768px) {
+  .container {
+    display: block;
+    width: 100%;
+  }
+
+  .image-container {
+    height: 300px;
+    width: 100%;
+    position: relative;
+  }
+
+  .details-panel {
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .menu-btn {
+    padding: 10px 18px;
+    font-size: 1rem;
+  }
+
+  .sidebar a {
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+}
+
 
       .image-container {
         height: 50vh;
