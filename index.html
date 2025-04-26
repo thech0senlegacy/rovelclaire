@@ -184,7 +184,7 @@
   </div>
 
   <div class="container" id="mainContent">
-    <div class="image-container" id="imageContainer"></div>
+    <div class="image-container" id="imageContainerMobile"></div>
     <div class="details-panel">
       <div class="details-content">
         <section id="home">
@@ -230,48 +230,59 @@
   <button onclick="scrollToTop()" id="backToTop" title="Go to top">↑</button>
 
   <script>
-    const images = [
-      'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
-      'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
-      'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
-      'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
-      'url("home13.jpg")'
-    ];
+const images = [
+  'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
+  'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
+  'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
+  'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
+  'url("home13.jpg")'
+];
 
-    const imageContainer = document.getElementById('imageContainer');
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
 
-    function updateImage() {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      imageContainer.style.backgroundImage = images[randomIndex];
-    }
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-    setInterval(updateImage, 5000);
-    updateImage();
+function toggleBackToTop() {
+  const backToTop = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+}
+window.onscroll = function() { toggleBackToTop(); };
 
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
+// Desktop image rotation
+const desktopImage = document.getElementById("imageContainer");
+if (desktopImage) {
+  function updateDesktopImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    desktopImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateDesktopImage, 5000);
+  updateDesktopImage();
+}
 
-    window.onscroll = function() {toggleBackToTop()};
-
-    function toggleBackToTop() {
-      const backToTop = document.getElementById("backToTop");
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        backToTop.style.display = "block";
-      } else {
-        backToTop.style.display = "none";
-      }
-    }
-
-    function scrollToTop() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-  </script>
+// Mobile image rotation
+const mobileImage = document.getElementById("imageContainerMobile");
+if (mobileImage) {
+  function updateMobileImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    mobileImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateMobileImage, 5000);
+  updateMobileImage();
+}
+</script>
 
   </div>
 
   <div class="mobile-view">
-    
+
   <button class="menu-btn" onclick="toggleMenu()">☰ MENU</button>
 
   <div class="sidebar" id="sidebar">
@@ -331,127 +342,203 @@
   <button onclick="scrollToTop()" id="backToTop" title="Go to top">↑</button>
 
   <script>
-    const images = [
-      'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
-      'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
-      'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
-      'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
-      'url("home13.jpg")'
-    ];
+const images = [
+  'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
+  'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
+  'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
+  'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
+  'url("home13.jpg")'
+];
 
-    const imageContainer = document.getElementById('imageContainer');
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
 
-    function updateImage() {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      imageContainer.style.backgroundImage = images[randomIndex];
-    }
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-    setInterval(updateImage, 5000);
-    updateImage();
+function toggleBackToTop() {
+  const backToTop = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+}
+window.onscroll = function() { toggleBackToTop(); };
 
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
+// Desktop image rotation
+const desktopImage = document.getElementById("imageContainer");
+if (desktopImage) {
+  function updateDesktopImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    desktopImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateDesktopImage, 5000);
+  updateDesktopImage();
+}
 
-    window.onscroll = function() {toggleBackToTop()};
+// Mobile image rotation
+const mobileImage = document.getElementById("imageContainerMobile");
+if (mobileImage) {
+  function updateMobileImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    mobileImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateMobileImage, 5000);
+  updateMobileImage();
+}
+</script>
 
-    function toggleBackToTop() {
-      const backToTop = document.getElementById("backToTop");
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        backToTop.style.display = "block";
-      } else {
-        backToTop.style.display = "none";
-      }
-    }
+</div>
 
-    function scrollToTop() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-  </script>
+  <div class="container" id="mainContent">
+    <div class="image-container" id="imageContainer"></div>
+    <div class="details-panel">
+      <div class="details-content">
+        <section id="home">
+          <h2>Home</h2>
+          <p>Welcome to our wedding site! ❤️</p>
+          <img src="home1.jpg" alt="Welcome Image">
+        </section>
+
+        <section id="story">
+          <h2>Our Story</h2>
+          <p>Our story began when...</p>
+          <img src="sect1.jpg" alt="Story Image">
+        </section>
+
+        <section id="schedule">
+          <h2>Schedule</h2>
+          <video controls><source src="schedule.mp4" type="video/mp4"></video>
+        </section>
+
+        <section id="motiff">
+          <h2>Motiff</h2>
+          <img src="motiff.jpg" alt="Motiff Image">
+        </section>
+
+        <section id="qna">
+          <h2>Q&A</h2>
+          <p>Here are some frequently asked questions...</p>
+        </section>
+
+        <section id="rsvp">
+          <h2>RSVP</h2>
+          <iframe src="https://example.com/rsvp-form" width="100%" height="400"></iframe>
+        </section>
+
+        <section id="photos">
+          <h2>Photos</h2>
+          <img src="photos.jpg" alt="Photos Gallery">
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <button onclick="scrollToTop()" id="backToTop" title="Go to top">↑</button>
+
+  <script>
+const images = [
+  'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
+  'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
+  'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
+  'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
+  'url("home13.jpg")'
+];
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
+
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleBackToTop() {
+  const backToTop = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+}
+window.onscroll = function() { toggleBackToTop(); };
+
+// Desktop image rotation
+const desktopImage = document.getElementById("imageContainer");
+if (desktopImage) {
+  function updateDesktopImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    desktopImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateDesktopImage, 5000);
+  updateDesktopImage();
+}
+
+// Mobile image rotation
+const mobileImage = document.getElementById("imageContainerMobile");
+if (mobileImage) {
+  function updateMobileImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    mobileImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateMobileImage, 5000);
+  updateMobileImage();
+}
+</script>
 
   </div>
 
   <script>
-    
-    const images = [
-      'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
-      'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
-      'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
-      'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
-      'url("home13.jpg")'
-    ];
+const images = [
+  'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
+  'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
+  'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
+  'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
+  'url("home13.jpg")'
+];
 
-    const imageContainer = document.getElementById('imageContainer');
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
 
-    function updateImage() {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      imageContainer.style.backgroundImage = images[randomIndex];
-    }
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-    setInterval(updateImage, 5000);
-    updateImage();
+function toggleBackToTop() {
+  const backToTop = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+}
+window.onscroll = function() { toggleBackToTop(); };
 
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
+// Desktop image rotation
+const desktopImage = document.getElementById("imageContainer");
+if (desktopImage) {
+  function updateDesktopImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    desktopImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateDesktopImage, 5000);
+  updateDesktopImage();
+}
 
-    window.onscroll = function() {toggleBackToTop()};
-
-    function toggleBackToTop() {
-      const backToTop = document.getElementById("backToTop");
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        backToTop.style.display = "block";
-      } else {
-        backToTop.style.display = "none";
-      }
-    }
-
-    function scrollToTop() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-  
-
-    // Also run mobile image rotation if available
-    try {
-      
-    const images = [
-      'url("home1.jpg")','url("home2.jpg")','url("home3.jpg")',
-      'url("home4.jpg")','url("home5.jpg")','url("home6.jpg")',
-      'url("home7.jpg")','url("home8.jpg")','url("home9.jpg")',
-      'url("home10.jpg")','url("home11.jpg")','url("home12.jpg")',
-      'url("home13.jpg")'
-    ];
-
-    const imageContainer = document.getElementById('imageContainer');
-
-    function updateImage() {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      imageContainer.style.backgroundImage = images[randomIndex];
-    }
-
-    setInterval(updateImage, 5000);
-    updateImage();
-
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    window.onscroll = function() {toggleBackToTop()};
-
-    function toggleBackToTop() {
-      const backToTop = document.getElementById("backToTop");
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        backToTop.style.display = "block";
-      } else {
-        backToTop.style.display = "none";
-      }
-    }
-
-    function scrollToTop() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-  
-    } catch (e) {}
-  </script>
+// Mobile image rotation
+const mobileImage = document.getElementById("imageContainerMobile");
+if (mobileImage) {
+  function updateMobileImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    mobileImage.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateMobileImage, 5000);
+  updateMobileImage();
+}
+</script>
 </body>
 </html>
