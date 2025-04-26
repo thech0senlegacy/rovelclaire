@@ -137,27 +137,37 @@
       }
     }
 
-    /* Mobile responsive fix */
     
-@media (max-width: 768px) {
-  .container {
-    display: block;
-    height: auto;
-  }
+.desktop-view { display: block; }
+.mobile-view { display: none; }
 
-  .image-container {
+/* Mobile responsive fix */
+@media (max-width: 768px) {
+  .desktop-view { display: none; }
+  .mobile-view { display: block; }
+
+  .mobile-view .image-container {
     width: 100%;
     height: 300px;
-    order: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
   }
 
-  .details-panel {
+  .mobile-view .details-panel {
     width: 100%;
-    height: auto;
-    overflow-y: visible;
+    padding: 20px;
+    background: #ffffff;
+    box-sizing: border-box;
   }
 }
-
+    
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
 
       .image-container {
         width: 100%;
@@ -176,6 +186,44 @@
   <button class="menu-btn" onclick="toggleMenu()">☰ MENU</button>
 
   <div class="sidebar" id="sidebar">
+<div class="mobile-view" style="display: none;">
+  <div class="image-container" id="mobileImageContainer"></div>
+  <div class="details-panel">
+    <div class="details-content">
+      <section id="home">
+        <h2>Home</h2>
+        <p>Welcome to our wedding site! ❤️</p>
+        <img src="home1.jpg" alt="Welcome Image">
+      </section>
+      <section id="story">
+        <h2>Our Story</h2>
+        <p>Our story began when...</p>
+        <img src="sect1.jpg" alt="Story Image">
+      </section>
+      <section id="schedule">
+        <h2>Schedule</h2>
+        <video controls><source src="schedule.mp4" type="video/mp4"></video>
+      </section>
+      <section id="motiff">
+        <h2>Motiff</h2>
+        <img src="motiff.jpg" alt="Motiff Image">
+      </section>
+      <section id="qna">
+        <h2>Q&A</h2>
+        <p>Here are some frequently asked questions...</p>
+      </section>
+      <section id="rsvp">
+        <h2>RSVP</h2>
+        <iframe src="https://example.com/rsvp-form" width="100%" height="400"></iframe>
+      </section>
+      <section id="photos">
+        <h2>Photos</h2>
+        <img src="photos.jpg" alt="Photos Gallery">
+      </section>
+    </div>
+  </div>
+</div>
+
     <a href="#home" onclick="toggleMenu()">Home</a>
     <a href="#story" onclick="toggleMenu()">Story</a>
     <a href="#schedule" onclick="toggleMenu()">Schedule</a>
@@ -185,6 +233,7 @@
     <a href="#photos" onclick="toggleMenu()">Photos</a>
   </div>
 
+  <div class="desktop-view">
   <div class="container" id="mainContent">
     <div class="image-container" id="imageContainer"></div>
     <div class="details-panel">
@@ -249,6 +298,16 @@
 
     setInterval(updateImage, 5000);
     updateImage();
+const mobileImageContainer = document.getElementById('mobileImageContainer');
+if (mobileImageContainer) {
+  function updateMobileImage() {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    mobileImageContainer.style.backgroundImage = images[randomIndex];
+  }
+  setInterval(updateMobileImage, 5000);
+  updateMobileImage();
+}
+
 
     function toggleMenu() {
       document.getElementById('sidebar').classList.toggle('active');
