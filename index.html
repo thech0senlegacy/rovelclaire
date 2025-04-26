@@ -345,6 +345,14 @@ if (imageContainerMobile) {
     function scrollToTop() {
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
-  </script>
+  
+// Force scroll to top on mobile
+window.addEventListener('load', () => {
+  if (window.innerWidth <= 768) {
+    window.scrollTo(0, 0);
+  }
+});
+
+</script>
 </body>
 </html>
