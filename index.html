@@ -1,50 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Pokemon Magazine</title>
+  <title>Sample Flipbook</title>
+  <style>
+    body {
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+    .flipbook {
+      width: 95vw; /* Bigger: almost full width */
+      max-width: 500px; /* Bigger max for tablets */
+      height: 80vh; /* Taller */
+      max-height: 90vh; /* Allow almost full screen */
+      touch-action: none;
+    }
+    .flipbook .page {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .flipbook .page img {
+      width: 100%;
+      height: auto;
+      max-height: 70%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .page-indicators {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 8px;
+    }
+    .page-indicators .dot {
+      width: 12px;
+      height: 12px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+    .page-indicators .dot.active {
+      background-color: #333;
+    }
+  </style>
 </head>
 
 <body>
   <div class="flipbook">
-    <div class="hard">My Pokemon Gallery <small>~ HankTheTank</small></div>
-    <div class="hard"></div>
-    <div>
-      <small>Lets Look At Some Amazing Pokemon ❤️</small>
-      <small>Gotta Catch 'Em All</small>
+    <div class="page">
+      <img src="https://picsum.photos/id/1015/600/400" alt="Sample 1" />
+      <small>Sample Page 1</small>
     </div>
-    <div>
-      <img src="img-1.png" alt="" />
-      <small> Charmandar </small>
+    <div class="page">
+      <img src="https://picsum.photos/id/1016/600/400" alt="Sample 2" />
+      <small>Sample Page 2</small>
     </div>
-    <div>
-      <img src="img-2.png" alt="" />
-      <small> Arbok </small>
+    <div class="page">
+      <img src="https://picsum.photos/id/1018/600/400" alt="Sample 3" />
+      <small>Sample Page 3</small>
     </div>
-    <div>
-      <img src="img-3.png" alt="" />
-      <small> Pikachu </small>
+    <div class="page">
+      <img src="https://picsum.photos/id/1020/600/400" alt="Sample 4" />
+      <small>Sample Page 4</small>
     </div>
-    <div>
-      <img src="img-4.png" alt="" />
-      <small> Mew </small>
+    <div class="page">
+      <img src="https://picsum.photos/id/1024/600/400" alt="Sample 5" />
+      <small>Sample Page 5</small>
     </div>
-    <div>
-      <img src="img-5.png" alt="" />
-      <small> Darkrai </small>
-    </div>
-    <div class="hard"></div>
-    <div class="hard">Thank You <small>~ HankTheTank</small></div>
   </div>
+
+  <div class="page-indicators" id="page-indicators"></div>
 
   <script src="jquery.js"></script>
   <script src="turn.js"></script>
   <script>
-    $(".flipbook").turn();
+    function setFlipbookSize() {
+      const width = Math.min(window.innerWidth * 0.95, 500);
+      const height = Math.min(window.innerHeight * 0.8, window.innerHeight * 0.9);
+      $(".flipbook").turn("size", width, height);
+    }
+
+    function createIndicators(totalPages) {
+      const indicators = document.getElementById('page-indicators');
+      indicators.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        indicators.appendChild(dot);
+      }
+      updateIndicators(1);
+    }
+
+    function updateIndicators(currentPage) {
+      const dots = document.querySelectorAll('.page-indicators .dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentPage - 1);
+      });
+    }
+
+    $(".flipbook").turn({
+      autoCenter: true,
+      display: 'single',
+      turnCorners: 'all',
+      duration: 600,
+      when: {
+        turned: function(event, page) {
+          updateIndicators(page);
+        }
+      }
+    });
+
+    let startX = 0;
+    let endX = 0;
+
+    const flipbook = document.querySelector('.flipbook');
+    flipbook.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    });
+
+    flipbook.addEventListener('touchend', function(e) {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const threshold = 50;
+      if (endX - startX > threshold) {
+        $(".flipbook").turn("previous");
+      } else if (startX - endX > threshold) {
+        $(".flipbook").turn("next");
+      }
+    }
+
+    window.addEventListener("resize", setFlipbookSize);
+    window.addEventListener("load", () => {
+      setFlipbookSize();
+      const totalPages = $(".flipbook").turn("pages");
+      createIndicators(totalPages);
+    });
   </script>
 </body>
-
 </html>
