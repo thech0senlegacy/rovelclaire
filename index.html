@@ -3,213 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding Story</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <title>Garden Wedding Flipbook</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Lato', sans-serif;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7)), 
-                        url('https://cdnjs.cloudflare.com/ajax/libs/simple-icons/3.0.1/simple-icons.svg');
-            background-size: 400px;
-            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(to bottom, #f8f9f3, #e7eee1);
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
             overflow: hidden;
-            color: #3a3a3a;
+            color: #354230;
+            touch-action: manipulation;
         }
-
-        .main-title {
-            font-family: 'Great Vibes', cursive;
-            color: #7a9e7e;
-            font-size: 2.5rem;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        
+        .instruction {
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-style: italic;
+            color: #5c6752;
+            background-color: rgba(255, 255, 255, 0.7);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
-        .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            color: #888;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
+        
         .book-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
             position: relative;
-            width: 90vw;
-            max-width: 400px;
-            height: 80vh;
-            max-height: 600px;
-            perspective: 1500px;
+            overflow: hidden;
+            padding: 40px 10px 60px 10px;
         }
-
+        
         .book {
-            position: absolute;
             width: 100%;
             height: 100%;
+            max-width: 400px;
+            position: relative;
             transform-style: preserve-3d;
             transition: transform 0.5s;
         }
-
+        
         .page {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: #fff9f5;
-            border-radius: 5px 15px 15px 5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transform-origin: left center;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            overflow: hidden;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            backface-visibility: hidden;
-            background-image: linear-gradient(to bottom right, rgba(122, 158, 126, 0.05), rgba(122, 158, 126, 0.02)),
-                              url('https://cdnjs.cloudflare.com/ajax/libs/simple-icons/3.0.1/simple-icons.svg');
-            background-size: cover, 200px;
-            background-position: center, center;
-            background-blend-mode: overlay;
-            border: 1px solid rgba(122, 158, 126, 0.2);
-        }
-
-        .page-content {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow: hidden;
-            line-height: 1.6;
-        }
-
-        .page-header {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: #7a9e7e;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: normal;
-        }
-
-        .page-subheader {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 20px;
-            text-align: center;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-
-        .page-image {
-            width: 100%;
-            height: auto;
-            margin: 10px 0;
-            border-radius: 5px;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
-        }
-
-        .page-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: #5a5a5a;
-            flex-grow: 1;
-            line-height: 1.7;
-        }
-
-        .page-number {
-            text-align: center;
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.2rem;
-            color: #7a9e7e;
-            margin-top: auto;
-            padding-top: 15px;
-        }
-
-        .flipped {
-            transform: rotateY(-180deg);
-        }
-        
-        .page:nth-child(1) { z-index: 5; }
-        .page:nth-child(2) { z-index: 4; }
-        .page:nth-child(3) { z-index: 3; }
-        .page:nth-child(4) { z-index: 2; }
-        .page:nth-child(5) { z-index: 1; }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            width: 90vw;
-            max-width: 400px;
-            margin-top: 20px;
-        }
-
-        .nav-button {
-            background-color: rgba(122, 158, 126, 0.8);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-button:hover {
-            background-color: rgba(122, 158, 126, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-
-        .nav-button:disabled {
-            background-color: #d8d8d8;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-
-        /* Page flip effect */
-        .page.flipping {
-            animation: flipPage 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000) forwards;
-        }
-
-        .page.flipping-back {
-            animation: flipPageBack 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000) forwards;
-        }
-
-        .page::before {
-            content: '';
-            position: absolute;
             top: 0;
             right: 0;
+            background-color: white;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+        }
+        
+        .page.flipping {
+            transform: rotateY(-130deg);
+            z-index: 20;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .page-content {
+            position: relative;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 20%);
-            z-index: 2;
-            opacity: 0.8;
-            transform: rotateY(180deg);
-            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
         }
-
+        
+        .cover .page-content {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+        }
+        
+        .page-image {
+            width: 85%;
+            height: 55%;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .page.active .page-image {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .page-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s 0.2s, transform 0.8s 0.2s;
+            font-family: 'Great Vibes', cursive;
+            color: #354230;
+        }
+        
+        .page.active .page-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .page-text {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s 0.4s, transform 0.8s 0.4s;
+        }
+        
+        .page.active .page-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .cover-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .cover-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .cover-image.active {
+            opacity: 0.3;
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cover-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #354230;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+        }
+        
+        .cover-subtitle {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 400;
+            color: #5c6752;
+        }
+        
+        .cover-date {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        .page-indicators {
+            position: fixed;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 100;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(53, 66, 48, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: rgba(53, 66, 48, 0.8);
+            transform: scale(1.2);
+        }
+        
+        .floral-decoration {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .decoration-1 {
+            top: 10px;
+            right: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .decoration-2 {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        @media (max-height: 600px) {
+            .page-image {
+                height: 45%;
+            }
+            
+            .page-title {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            
+            .page-text {
+                font-size: 14px;
+            }
+        }
+        
+        /* Paper fold effect */
         .page::after {
             content: '';
             position: absolute;
@@ -217,299 +281,297 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0) 80%, rgba(0,0,0,0.1) 100%);
-            z-index: 1;
-            opacity: 0.8;
+            background: linear-gradient(to right, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.03) 100%);
+            pointer-events: none;
         }
-
-        @keyframes flipPage {
-            0% { transform: rotateY(0); }
-            100% { transform: rotateY(-180deg); }
-        }
-
-        @keyframes flipPageBack {
-            0% { transform: rotateY(-180deg); }
-            100% { transform: rotateY(0); }
-        }
-
-        .instruction {
-            text-align: center;
-            color: #888;
-            margin-bottom: 15px;
-            font-style: italic;
-            font-size: 0.9rem;
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 1px;
-        }
-
-        /* Book edge styling */
-        .book::before {
+        
+        /* Page turning shadow */
+        .page.flipping::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 10px;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to right, #7a9e7e, #d8e8d9);
-            border-radius: 5px 0 0 5px;
-            transform: translateX(-5px);
-            z-index: -1;
-        }
-
-        /* Decorative elements */
-        .decorative-leaf {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .leaf-top-right {
-            top: 20px;
-            right: 20px;
-            transform: rotate(45deg);
-        }
-
-        .leaf-bottom-left {
-            bottom: 20px;
-            left: 20px;
-            transform: rotate(-135deg);
-        }
-
-        .divider {
-            text-align: center;
-            margin: 15px 0;
-            color: #7a9e7e;
-            font-size: 1.5rem;
-            opacity: 0.7;
-        }
-
-        .highlight {
-            color: #7a9e7e;
-            font-weight: 500;
-        }
-
-        .date {
-            font-family: 'Cormorant Garamond', serif;
-            text-align: center;
-            font-style: italic;
-            margin: 10px 0;
-            font-size: 1.1rem;
-            color: #888;
+            background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0));
+            z-index: 5;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
         }
     </style>
 </head>
 <body>
-    <h1 class="main-title">Sarah & Michael</h1>
-    <p class="subtitle">Our Garden Wedding</p>
-    <p class="instruction">Swipe left or right to turn pages</p>
-
+    <div class="instruction">swipe left or right to turn pages</div>
+    
     <div class="book-container">
-        <div class="book" id="book">
-            <!-- Page 1 - Cover -->
-            <div class="page" id="page1">
-                <div class="page-content">
-                    <div class="decorative-leaf leaf-top-right">✿</div>
-                    <div class="decorative-leaf leaf-bottom-left">✿</div>
-                    
-                    <h2 class="page-header" style="font-size: 2.5rem; margin-top: 30px;">Our Love Story</h2>
-                    <p class="page-subheader">A Garden Wedding Celebration</p>
-                    
-                    <img src="/api/placeholder/320/200" alt="placeholder" class="page-image">
-                    
-                    <p class="date">June 12, 2025</p>
-                    
-                    <div class="page-text" style="text-align: center; margin-top: 20px;">
-                        <p>Join us as we celebrate our special day surrounded by nature's beauty.</p>
-                    </div>
-                    
-                    <div class="page-number">❦</div>
+        <div class="book">
+            <!-- Cover Page -->
+            <div class="page cover active" data-index="0">
+                <div class="cover-image-container">
+                    <img src="/api/placeholder/1200/800" alt="Garden background" class="cover-image active" data-id="1">
+                    <img src="/api/placeholder/1200/800" alt="Garden background" class="cover-image" data-id="2">
+                    <img src="/api/placeholder/1200/800" alt="Garden background" class="cover-image" data-id="3">
+                </div>
+                <div class="cover-content">
+                    <h1 class="cover-title">Sarah & James</h1>
+                    <p class="cover-subtitle">Request the honor of your presence</p>
+                    <p class="cover-subtitle">at their wedding celebration</p>
+                    <p class="cover-date">May 15, 2025</p>
                 </div>
             </div>
-
-            <!-- Page 2 - How We Met -->
-            <div class="page" id="page2">
+            
+            <!-- Page 1 -->
+            <div class="page" data-index="1">
                 <div class="page-content">
-                    <h2 class="page-header">How We Met</h2>
-                    <p class="page-subheader">Where our journey began</p>
-                    
-                    <img src="/api/placeholder/320/180" alt="placeholder" class="page-image">
-                    
-                    <div class="page-text">
-                        <p>Our story began on a sunny afternoon in the <span class="highlight">botanical gardens</span>. Sarah was sketching wildflowers while Michael was photographing butterflies. A chance encounter by the rose pavilion led to hours of conversation and laughter.</p>
-                        <p>Who would have thought that a shared passion for nature would blossom into a love that would change our lives forever?</p>
-                    </div>
-                    
-                    <div class="divider">❧</div>
-                    <div class="page-number">2</div>
+                    <img src="/api/placeholder/800/600" alt="Couple photo" class="page-image">
+                    <h2 class="page-title">Our Story</h2>
+                    <p class="page-text">We met on a sunny afternoon in Central Park, both reaching for the same book at an outdoor reading event. Five years later, under the same trees where we first met, James got down on one knee and proposed. Now we're excited to begin our next chapter together, surrounded by our loved ones in a beautiful garden setting.</p>
                 </div>
             </div>
-
-            <!-- Page 3 - The Proposal -->
-            <div class="page" id="page3">
+            
+            <!-- Page 2 -->
+            <div class="page" data-index="2">
                 <div class="page-content">
-                    <h2 class="page-header">The Proposal</h2>
-                    <p class="page-subheader">A perfect moment</p>
-                    
-                    <img src="/api/placeholder/320/220" alt="placeholder" class="page-image">
-                    
-                    <div class="page-text">
-                        <p>After two years of adventures together, Michael planned a special picnic in the same garden where we first met. As the sun began to set, casting a golden glow over the flowers, he got down on one knee.</p>
-                        <p>Surrounded by blooming peonies and the gentle sound of a nearby fountain, he asked Sarah to spend forever with him. And of course, she said yes!</p>
-                    </div>
-                    
-                    <div class="divider">❧</div>
-                    <div class="page-number">3</div>
+                    <img src="/api/placeholder/800/600" alt="Venue photo" class="page-image">
+                    <h2 class="page-title">Ceremony & Reception</h2>
+                    <p class="page-text">The ceremony will begin at 4:00 PM in the Rose Garden at Hillcrest Manor. The reception will follow immediately after in the Grand Pavilion. Please join us for an evening of dinner, dancing, and celebration beneath the stars.</p>
                 </div>
             </div>
-
-            <!-- Page 4 - Wedding Details -->
-            <div class="page" id="page4">
+            
+            <!-- Page 3 -->
+            <div class="page" data-index="3">
                 <div class="page-content">
-                    <h2 class="page-header">Wedding Details</h2>
-                    <p class="page-subheader">Join our celebration</p>
-                    
-                    <img src="/api/placeholder/320/200" alt="placeholder" class="page-image">
-                    
-                    <div class="page-text">
-                        <p><span class="highlight">Ceremony:</span> 2:00 PM at Rosewood Garden Estate</p>
-                        <p><span class="highlight">Reception:</span> 5:00 PM under the stars in the garden pavilion</p>
-                        <p><span class="highlight">Dress Code:</span> Garden formal attire</p>
-                        <p>Our garden wedding will feature seasonal flowers, farm-to-table cuisine, and dancing beneath fairy lights strung through the trees.</p>
-                    </div>
-                    
-                    <div class="divider">❧</div>
-                    <div class="page-number">4</div>
+                    <img src="/api/placeholder/800/600" alt="Map photo" class="page-image">
+                    <h2 class="page-title">Location</h2>
+                    <p class="page-text">Hillcrest Manor<br>123 Garden Avenue<br>Bloomfield, NY 10036<br><br>Complimentary valet parking will be available. A shuttle service will run from the Hampton Inn downtown starting at 3:00 PM.</p>
                 </div>
             </div>
-
-            <!-- Page 5 - RSVP -->
-            <div class="page" id="page5">
+            
+            <!-- Page 4 -->
+            <div class="page" data-index="4">
                 <div class="page-content">
-                    <h2 class="page-header">RSVP & Registry</h2>
-                    <p class="page-subheader">Your presence is our gift</p>
-                    
-                    <img src="/api/placeholder/320/190" alt="placeholder" class="page-image">
-                    
-                    <div class="page-text">
-                        <p>Please RSVP by May 15, 2025</p>
-                        <p>Visit our wedding website at <span class="highlight">sarahandmichael.wedding</span> to confirm your attendance and access our registry information.</p>
-                        <p>We look forward to celebrating this special day with our beloved friends and family in the garden of our dreams.</p>
-                    </div>
-                    
-                    <div class="divider">❧</div>
-                    <div class="page-number">5</div>
+                    <img src="/api/placeholder/800/600" alt="Food photo" class="page-image">
+                    <h2 class="page-title">Dinner & Dancing</h2>
+                    <p class="page-text">We'll be serving a farm-to-table seasonal menu featuring locally sourced ingredients. Please indicate any dietary restrictions when you RSVP. After dinner, join us on the dance floor as we celebrate into the evening with music by The Garden City Band.</p>
+                </div>
+            </div>
+            
+            <!-- Page 5 -->
+            <div class="page" data-index="5">
+                <div class="page-content">
+                    <img src="/api/placeholder/800/600" alt="RSVP photo" class="page-image">
+                    <h2 class="page-title">RSVP</h2>
+                    <p class="page-text">We look forward to celebrating with you! Please respond by April 15, 2025.<br><br>Visit our wedding website at:<br>sarahandjames.com<br><br>Or contact us at:<br>wedding@sarahandjames.com</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="navigation">
-        <button class="nav-button" id="prev-btn" disabled>Previous</button>
-        <button class="nav-button" id="next-btn">Next</button>
+    
+    <div class="page-indicators">
+        <div class="indicator active" data-index="0"></div>
+        <div class="indicator" data-index="1"></div>
+        <div class="indicator" data-index="2"></div>
+        <div class="indicator" data-index="3"></div>
+        <div class="indicator" data-index="4"></div>
+        <div class="indicator" data-index="5"></div>
     </div>
-
+    
+    <div class="floral-decoration decoration-1">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,0 C60,20 80,30 100,30 C80,40 60,60 50,100 C40,60 20,40 0,30 C20,30 40,20 50,0" fill="#354230"/>
+        </svg>
+    </div>
+    
+    <div class="floral-decoration decoration-2">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,0 C60,20 80,30 100,30 C80,40 60,60 50,100 C40,60 20,40 0,30 C20,30 40,20 50,0" fill="#354230"/>
+        </svg>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const book = document.getElementById('book');
             const pages = document.querySelectorAll('.page');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            let currentPage = 0;
-            const totalPages = pages.length;
-            
-            // Hide all pages except the first one
-            for (let i = 1; i < totalPages; i++) {
-                pages[i].style.display = 'none';
-            }
-            
-            // Function to update buttons
-            function updateButtons() {
-                prevBtn.disabled = currentPage === 0;
-                nextBtn.disabled = currentPage === totalPages - 1;
-            }
-            
-            // Function to turn to next page
-            function nextPage() {
-                if (currentPage < totalPages - 1) {
-                    // Show the current and next page
-                    pages[currentPage].style.display = 'block';
-                    pages[currentPage + 1].style.display = 'block';
-                    
-                    // Add the flipping animation
-                    pages[currentPage].classList.add('flipping');
-                    
-                    // After animation completes
-                    setTimeout(() => {
-                        pages[currentPage].classList.add('flipped');
-                        pages[currentPage].classList.remove('flipping');
-                        pages[currentPage].style.display = 'none';
-                        currentPage++;
-                        updateButtons();
-                    }, 800);
-                }
-            }
-            
-            // Function to turn to previous page
-            function prevPage() {
-                if (currentPage > 0) {
-                    // Show current and previous page
-                    pages[currentPage - 1].style.display = 'block';
-                    
-                    // Remove flipped class and add flipping-back animation
-                    pages[currentPage - 1].classList.remove('flipped');
-                    pages[currentPage - 1].classList.add('flipping-back');
-                    
-                    // After animation completes
-                    setTimeout(() => {
-                        pages[currentPage - 1].classList.remove('flipping-back');
-                        currentPage--;
-                        updateButtons();
-                    }, 800);
-                }
-            }
-            
-            // Event listeners for buttons
-            nextBtn.addEventListener('click', nextPage);
-            prevBtn.addEventListener('click', prevPage);
-            
-            // Touch swipe functionality
+            const indicators = document.querySelectorAll('.indicator');
+            const coverImages = document.querySelectorAll('.cover-image');
+            let currentPageIndex = 0;
             let touchStartX = 0;
             let touchEndX = 0;
+            let isAnimating = false;
             
-            function checkSwipeDirection() {
-                if (touchEndX < touchStartX - 50) {
-                    // Swiped left - go to next page
-                    nextPage();
+            // Initialize
+            updateIndicators();
+            
+            // Event listeners
+            document.addEventListener('touchstart', handleTouchStart, false);
+            document.addEventListener('touchmove', handleTouchMove, false);
+            document.addEventListener('touchend', handleTouchEnd, false);
+            
+            // For desktop testing
+            document.addEventListener('mousedown', handleMouseDown, false);
+            document.addEventListener('mousemove', handleMouseMove, false);
+            document.addEventListener('mouseup', handleMouseUp, false);
+            
+            // Indicators click event
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', () => {
+                    if (isAnimating) return;
+                    
+                    const targetIndex = parseInt(indicator.getAttribute('data-index'));
+                    if (targetIndex === currentPageIndex) return;
+                    
+                    if (targetIndex > currentPageIndex) {
+                        // Going forward
+                        for (let i = currentPageIndex; i < targetIndex; i++) {
+                            setTimeout(() => {
+                                turnPage(true);
+                            }, (i - currentPageIndex) * 600);
+                        }
+                    } else {
+                        // Going backward
+                        for (let i = currentPageIndex; i > targetIndex; i--) {
+                            setTimeout(() => {
+                                turnPage(false);
+                            }, (currentPageIndex - i) * 600);
+                        }
+                    }
+                });
+            });
+            
+            // Change cover images
+            let activeCoverImageIndex = 0;
+            
+            function rotateCoverImages() {
+                if (currentPageIndex === 0) {
+                    const nextImageIndex = (activeCoverImageIndex + 1) % coverImages.length;
+                    
+                    coverImages[activeCoverImageIndex].classList.remove('active');
+                    coverImages[nextImageIndex].classList.add('active');
+                    
+                    activeCoverImageIndex = nextImageIndex;
                 }
-                if (touchEndX > touchStartX + 50) {
-                    // Swiped right - go to previous page
-                    prevPage();
+                
+                setTimeout(rotateCoverImages, 5000);
+            }
+            
+            rotateCoverImages();
+            
+            // Touch event handlers
+            function handleTouchStart(e) {
+                touchStartX = e.touches[0].clientX;
+            }
+            
+            function handleTouchMove(e) {
+                touchEndX = e.touches[0].clientX;
+            }
+            
+            function handleTouchEnd() {
+                handleSwipe();
+            }
+            
+            // Mouse event handlers (for desktop testing)
+            let isMouseDown = false;
+            
+            function handleMouseDown(e) {
+                isMouseDown = true;
+                touchStartX = e.clientX;
+            }
+            
+            function handleMouseMove(e) {
+                if (isMouseDown) {
+                    touchEndX = e.clientX;
                 }
             }
             
-            document.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            
-            document.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                checkSwipeDirection();
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', e => {
-                if (e.key === 'ArrowRight') {
-                    nextPage();
-                } else if (e.key === 'ArrowLeft') {
-                    prevPage();
+            function handleMouseUp() {
+                if (isMouseDown) {
+                    handleSwipe();
+                    isMouseDown = false;
                 }
-            });
+            }
             
-            // Initialize button state
-            updateButtons();
+            function handleSwipe() {
+                if (isAnimating) return;
+                
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (swipeDistance < -swipeThreshold) {
+                    // Swipe left - go to next page
+                    if (currentPageIndex < pages.length - 1) {
+                        turnPage(true);
+                    }
+                } else if (swipeDistance > swipeThreshold) {
+                    // Swipe right - go to previous page
+                    if (currentPageIndex > 0) {
+                        turnPage(false);
+                    }
+                }
+            }
+            
+            function turnPage(forward) {
+                if (isAnimating) return;
+                isAnimating = true;
+                
+                const currentPage = pages[currentPageIndex];
+                
+                if (forward) {
+                    // Going to next page
+                    const nextPageIndex = currentPageIndex + 1;
+                    if (nextPageIndex >= pages.length) {
+                        isAnimating = false;
+                        return;
+                    }
+                    
+                    const nextPage = pages[nextPageIndex];
+                    
+                    currentPage.classList.add('flipping');
+                    
+                    setTimeout(() => {
+                        currentPage.classList.remove('active');
+                        nextPage.classList.add('active');
+                        
+                        setTimeout(() => {
+                            currentPage.classList.remove('flipping');
+                            currentPageIndex = nextPageIndex;
+                            updateIndicators();
+                            isAnimating = false;
+                        }, 300);
+                    }, 500);
+                } else {
+                    // Going to previous page
+                    const prevPageIndex = currentPageIndex - 1;
+                    if (prevPageIndex < 0) {
+                        isAnimating = false;
+                        return;
+                    }
+                    
+                    const prevPage = pages[prevPageIndex];
+                    
+                    prevPage.classList.add('active');
+                    prevPage.style.transform = 'rotateY(-130deg)';
+                    
+                    setTimeout(() => {
+                        prevPage.style.transform = 'rotateY(0)';
+                        
+                        setTimeout(() => {
+                            currentPage.classList.remove('active');
+                            currentPageIndex = prevPageIndex;
+                            updateIndicators();
+                            isAnimating = false;
+                        }, 300);
+                    }, 50);
+                }
+            }
+            
+            function updateIndicators() {
+                indicators.forEach((indicator, index) => {
+                    if (index === currentPageIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 </body>
