@@ -303,6 +303,38 @@
                 width: 90%;
             }
         }
+
+        /* Larger venue photo styling */
+        .venue-page .page-image {
+            width: 95%;
+            height: 65%;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* For image rotation/carousel */
+        .venue-carousel {
+            position: relative;
+            width: 100%;
+            height: 95%;
+            margin-bottom: 15px;
+        }
+
+        .venue-carousel img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .venue-carousel img.active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -345,8 +377,15 @@
             
             <!-- Page 2 -->
             <div class="page" data-index="2">
-                <div class="page-content">
-                    <img src="/api/placeholder/800/600" alt="Venue photo" class="page-image">
+                <div class="page-content venue-page">
+                    <div class="venue-carousel">
+                        <img src="venue1.jpg" alt="Venue photo 1" class="active">
+                        <img src="venue2.jpg" alt="Venue photo 2">
+                        <img src="venue3.jpg" alt="Venue photo 3">
+                        <img src="venue4.jpg" alt="Venue photo 4">
+                        <img src="venue5.jpg" alt="Venue photo 5"> 
+                        <!-- Add more images as needed -->
+                    </div>
                     <h2 class="page-title">Ceremony & Reception</h2>
                     <p class="page-text">The ceremony will begin at 4:00 PM in the Rose Garden at Hillcrest Manor. The reception will follow immediately after in the Grand Pavilion. Please join us for an evening of dinner, dancing, and celebration beneath the stars.</p>
                 </div>
@@ -607,6 +646,24 @@
                     }
                 });
             }
+            
+            // Image carousel for venue page
+            function setupVenueCarousel() {
+                const images = document.querySelectorAll('.venue-carousel img');
+                if (images.length <= 1) return;
+                
+                let currentImageIndex = 0;
+                
+                // Change image every 3 seconds
+                setInterval(() => {
+                    images[currentImageIndex].classList.remove('active');
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    images[currentImageIndex].classList.add('active');
+                }, 3000);
+            }
+
+            // Initialize carousel when page loads
+            setupVenueCarousel();
         });
     </script>
 </body>
