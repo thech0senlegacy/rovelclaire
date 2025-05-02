@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claire & Rovel Wedding Flipbook</title>
+    <title>Garden Wedding Flipbook</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Dancing+Script:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Dancing+Script:wght@400;600&family=Rock+Salt&family=Lilita+One&family=Oswald:wght@400;500&display=swap');
         
         * {
             margin: 0;
@@ -24,6 +24,10 @@
             color: #42312b;
             touch-action: manipulation;
         }
+		
+		h1 {
+            font-family: 'Rock Salt', serif;
+        }
         
         body, p, h1, h2, h3, div, span {
             font-style: normal;
@@ -35,7 +39,7 @@
 
         .instruction {
             text-align: center;
-            padding: 8px;
+            padding: 5px;
             font-size: 14px;
             font-style: normal;
             color: #5c3c35;
@@ -120,12 +124,13 @@
             justify-content: center; /* Keep the cover centered */
         }
 
-        .cover-date {
-           font-size: 24px;
-            margin-top: 20px;
+		.cover-date {
+            font-size: 25px;
+			margin-top: 20px;
             font-weight: 500;
             color: #42312b;
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Oswald', cursive;
+      
         }
         
         .page-image {
@@ -142,7 +147,7 @@
             font-size: 22px;
             margin-bottom: 15px;
             font-weight: 500;
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Oswald', cursive;
             color: #5c3c35;
             order: -1; /* This ensures title appears first in flex layout */
         }
@@ -193,8 +198,7 @@
          }
         
         .cover-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 42px;
+            font-size: 35x;
             margin-bottom: 20px;
             color: #42312b;
             text-shadow: 0 2px 10px rgba(255,255,255,0.8);
@@ -207,14 +211,6 @@
             color: #5c3c35;
         }
         
-        .cover-date {
-            font-size: 24px;
-            font-weight: 500;
-            color: #42312b;
-            font-family: 'Dancing Script', cursive;
-      
-        }
-        
         .page-indicators {
             position: fixed;
             bottom: 15px;
@@ -225,7 +221,7 @@
             gap: 12px;
             z-index: 100;
         }
-/* New code for the banner */
+		/* New code for the banner */
            .banner-layout {
            display: flex;
            flex-direction: column;
@@ -585,15 +581,15 @@
                    <img src="coverpage.jpg" alt="Garden background" class="cover-image">
                 </div>
                 <div class="cover-content">
-                   <h1 class="cover-title">Claire & Rovel</h1>
-                <p class="cover-date">July 12, 2025</p>
+                   <h1 class="cover-title">Claire at Rovel</h1>
+                <p class="cover-date">JULY 12, 2025</p>
            </div>
           </div>
             
             <!-- Page 1 -->
 			<div class="page" data-index="1">
 				<div class="page-content banner-layout">
-					<h2 class="page-title">Our Story</h2>
+					<h2 class="page-title">ANG AMING KWENTO</h2>
 					<div class="title-divider">
 					<span class="heart-icon">❤</span>
 					</div>
@@ -619,7 +615,7 @@
             <!-- Page 2 -->
             <div class="page" data-index="2">
                 <div class="page-content venue-page">
-                    <h2 class="page-title">Ceremony & Reception</h2>
+                    <h2 class="page-title">SEREMONYA at RESEPYON</h2>
 					
 					<div class="title-divider">
 					<span class="heart-icon">❤</span>
@@ -636,39 +632,54 @@
                         <!-- Add more images as needed -->
                     </div>
                     
-					<p class="page-text">The ceremony will begin at 4:00 PM in the Rose Garden at Hillcrest Manor. The reception will follow immediately after in the Grand Pavilion. Please join us for an evening of dinner, dancing, and celebration beneath the stars.</p>
-                </div>
+					<p class="page-text">Ang seremonya ng aming pag-iisang dibdib ay magsisimula nang <b>ganap na alas-7:30 ng umaga</b> sa <b>Tree House Mansion Events Place.</b></p><br>
+                    <p class="page-text">Pagkatapos ng seremonya, kayo ay inaanyayahang makiisa sa isang masayang <b>almusal</b> at kasiyahan sa <b>reception area</b> ng parehong lugar.</p><br>
+				    <p class="page-text">Magsalo tayo sa masarap na pagkain, tawanan, at mga alaala habang sinasalubong ang bagong yugto ng aming buhay—sa isang umagang punô ng pag-ibig at ligaya!</p>
+				</div>
             </div>
             
             <!-- Page 3 -->
             <div class="page" data-index="3">
                 <div class="page-content">
-                    <h2 class="page-title"><b>Lokasyon</b></h2>
+                    <h2 class="page-title"><b>LOKASYON</b></h2>
 					<div class="title-divider">
 					<span class="heart-icon">❤</span>
 					</div>
-                    <p class="page-text">Tree House Mansion Restaurant & Events Place<br>Lalaan II, Leynes Street<br>Silang, Cavite<br><br>Complimentary valet parking will be available. A shuttle service will run from the Hampton Inn downtown starting at 3:00 PM.</p><br>
-                    <p class="page-text"><a href="https://www.google.com/maps/dir//Tree+House+Mansion,+Silang,+Cavite/@14.1556267,120.9557347,19z/data=!4m16!1m7!3m6!1s0x33bd79ece93ecc2f:0x120f4b67dc31fbe2!2sTree+House+Mansion!8m2!3d14.1556297!4d120.9556983!16s%2Fg%2F11g6d88k4q!4m7!1m0!1m5!1m1!1s0x33bd79ece93ecc2f:0x120f4b67dc31fbe2!2m2!1d120.9556983!2d14.1556297" target="_blank" style="color: #5c3c35; font-weight: bold; text-decoration: underline;">Direksyon</a></p><br>
+					<p class="page-text" style="font-size:20px;"><b>Tree House Mansion Events Place</b></p>
+					
+					<p style="font-style: normal; margin-bottom: 10px; color: #42312b;">
+					Lalaan II, Leynes Street,<br> Silang, Cavite 4118
+					</p>
+					
+					<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size:13px;">
+					(nasa kahabaan ng Aguinaldo Highway)<br><br>
+					</p>
+					
+					<p class="page-text">Para sa mga dadalo gamit ang sasakyan, motorsiklo, o anumang uri ng transportasyon, may nakalaang paradahan sa venue simula <b>alas-7:00 ng umaga</b>.</p><br>
                     <div class="map-container" style="width: 100%; height: 65%; overflow: auto; margin-bottom: 10px; border-radius: 5px;">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d483.5834493369961!2d120.95569825944891!3d14.155629738034332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd79ece93ecc2f%3A0x120f4b67dc31fbe2!2sTree%20House%20Mansion!5e0!3m2!1sen!2sph!4v1746068286399!5m2!1sen!2sph" 
                         width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+					</div>
+					
                 </div>
             </div>
             
 			<!-- Page 4 - Wedding Motif -->
 			<div class="page" data-index="4">
 				<div class="page-content">
-					<h2 class="page-title">Wedding Motif & Details</h2>
+					<h2 class="page-title">GAYAK AT KULAY</h2>
 					<div class="title-divider">
 					<span class="heart-icon">❤</span>
 					</div>
 					<div style="width: 100%; max-height: 75%; overflow-y: auto; margin-bottom: 10px; padding: 0 5px;">
 						<div style="text-align: center; margin-bottom: 15px;">
-							<h3 style="font-size: 18px; margin-bottom: 5px; color: #42312b;">Gayak</h3>
-							<h4 style="font-size: 16px; margin-bottom: 10px; color: #42312b;">(Pormal)</h4>
-							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 14px;">
+						<!--	<h3 style="font-size: 18px; margin-bottom: 5px; color: #42312b;">Gayak at Kulay</h3> -->
+						<!--	<h4 style="font-size: 16px; margin-bottom: 10px; color: #42312b;">(Pormal)</h4> -->
+							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 13px;">
 								Mangyaring magsuot ng maayos at angkop na kasuotan. Mahigpit po naming ipinatatakdaan ang tamang porma ng pananamit para sa okasyon.
+							</p>
+							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 13px;">
+                                Iwasan lamang pong mag-suot ng maong na pantalon at tsinelas.
 							</p>
 						</div>
 						
@@ -699,19 +710,45 @@
 							</div>
 						</div>
 						
+						<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 13px;">
+								Hindi naman po kinakailangan, ngunit ikagagalak naming makita kayong nakaangkop sa kulay ng aming kasal.
+						</p>
+						
 						<div style="text-align: center; margin-bottom: 15px;">
 							<h3 style="font-size: 16px; margin-bottom: 5px; color: #42312b;">Gabay sa Kulay:</h3>
 							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 14px;">
-								Rustic Filipiniana
+								Rustic Filipiniana, Terracotta
 							</p>
+
 						</div>
 						
+						<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 5px;">
+							<div style="display: flex; flex-direction: column; align-items: center;">
+								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #F5F5DC;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Beige</p>
+							</div>
+							<div style="display: flex; flex-direction: column; align-items: center;">
+								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #E1BE9B;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Sand</p>
+							</div>
+							<div style="display: flex; flex-direction: column; align-items: center;">
+								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #D69264;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Terracotta</p>
+							</div>
+						</div>
 						<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
-							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #F5CF48;"></div>
-							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #E53935;"></div>
-							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #4CAF50;"></div>
-							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2196F3;"></div>
-							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #9C27B0;"></div>
+							<div style="display: flex; flex-direction: column; align-items: center;">
+								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #DEC2AF;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Almond</p>
+							</div>
+							<div style="display: flex; flex-direction: column; align-items: center;">
+								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #A0A088;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Sage</p>
+							</div>
+							<div style="display: flex; flex-direction: column; align-items: center;">
+								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #747C70;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Olive</p>
+							</div>
 						</div>
 						
 						<!-- Updated vertical layout -->
@@ -817,9 +854,15 @@
 					<div class="title-divider">
 					<span class="heart-icon">❤</span>
 					</div>
-					 <img src="/api/placeholder/800/600" alt="RSVP photo" class="page-image">
-                    <p class="page-text">We look forward to celebrating with you! Please respond by April 15, 2025.<br><br>Visit our wedding website at:<br>https://thech0senlegacy.github.io/rovelclaire/<br><br>Or contact us at:<br>xxxx.xxxxx@gmail.com | +63 912 345 6789<br>xxxx.xxxxx@gmail.com | +63 912 345 67893</p>
-                </div>
+					
+                    <p class="page-text">Kung maaari po ay magbigay ng kumpirmasyon ng inyong pagdalo sa aming kasal sa <br><b>ika-1 ng Hulyo 2025</b>.<br><br>Visit our wedding website at:<br>https://thech0senlegacy.github.io/rovelclaire/<br><br>Or contact us at:<br>rovel.herona@gmail.com | +63 912 345 6789<br>claireaugil@gmail.com | +63 912 345 6789</p><br>
+					<p style="font-style: normal; margin-bottom: 10px; color: #42312b; font-size: 16px;">
+					Ang inyong panalangin at presensya lamang po ang aming hiling sa araw ng aming pag-iisang dibdib.<br><br>
+					Ngunit kung nais pa rin po ninyong magbahagi ng biyaya, higit po naming pahahalagahan ang regalong pinansyal.<br><br>
+					Maaari po ninyo itong ipadala sa pamamagitan ng mga sumusunod na detalye:<br><br>
+					</p>
+				</div>
+				
             </div>
            
 			
