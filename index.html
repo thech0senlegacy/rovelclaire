@@ -25,11 +25,19 @@
             touch-action: manipulation;
         }
         
+        body, p, h1, h2, h3, div, span {
+            font-style: normal;
+        }
+        
+        .page[data-index="1"] .page-text i {
+            font-style: italic;
+        }
+
         .instruction {
             text-align: center;
             padding: 8px;
             font-size: 14px;
-            font-style: italic;
+            font-style: normal;
             color: #5c3c35;
             background-color: rgba(255, 255, 255, 0.7);
             position: fixed;
@@ -98,7 +106,8 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            /*justify-content: center;*/
+            justify-content: flex-start; /* Changed to align from top */
             align-items: center;
             text-align: center;
             padding: 20px;
@@ -108,6 +117,15 @@
         
         .cover .page-content {
             background: linear-gradient(to bottom, rgba(248,205,192,0.95), rgba(248,205,192,0.8));
+            justify-content: center; /* Keep the cover centered */
+        }
+
+        .cover-date {
+           font-size: 24px;
+            margin-top: 20px;
+            font-weight: 500;
+            color: #42312b;
+            font-family: 'Dancing Script', cursive;
         }
         
         .page-image {
@@ -120,11 +138,13 @@
         }
         
         .page-title {
+            margin-top: 0; /* Add this to ensure no extra space */
             font-size: 22px;
             margin-bottom: 15px;
             font-weight: 500;
             font-family: 'Dancing Script', cursive;
             color: #5c3c35;
+            order: -1; /* This ensures title appears first in flex layout */
         }
         
         .page-text {
@@ -159,9 +179,18 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between; /* This creates space between top and bottom */
+            padding: 40px 20px; /* Padding top and bottom */
         }
+     
+        .cover-top {
+            padding-top: 30px;
+         }
+
+        .cover-bottom {
+            padding-bottom: 30px;
+         }
         
         .cover-title {
             font-family: 'Dancing Script', cursive;
@@ -179,9 +208,11 @@
         }
         
         .cover-date {
-            font-size: 18px;
-            margin-top: 10px;
+            font-size: 24px;
             font-weight: 500;
+            color: #42312b;
+            font-family: 'Dancing Script', cursive;
+      
         }
         
         .page-indicators {
@@ -195,11 +226,22 @@
             z-index: 100;
         }
 /* New code for the banner */
+           .banner-layout {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           }           
+
            .banner-layout .page-image {
            width: 100%;
            height: 45%; /* Reduce height to make it a banner */
-           margin-bottom: 20px;
+           margin-top: 0;
+           margin-bottom: 15px;
            object-position: center;
+           }
+           
+           .banner-layout .page-title {
+           margin-bottom: 10px;
            }
 
            .banner-layout .page-content {
@@ -214,6 +256,7 @@
            margin: 0 auto;
            max-width: 100%;
            font-size: 13px;
+           
            }
 /* end code for the banner */   
      
@@ -312,6 +355,7 @@
             width: 95%;
             height: 65%;
             transition: opacity 1s ease-in-out;
+            margin-bottom: 10px;
         }
 
         /* For image rotation/carousel */
@@ -319,7 +363,8 @@
             position: relative;
             width: 100%;
             height: 95%;
-            margin-bottom: 15px;
+            margin-bottom: 0; /* Change from 15px to 0 */
+            margin-top: 0;
         }
 
         .venue-carousel img {
@@ -327,7 +372,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 95%;
             object-fit: cover;
             border-radius: 5px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -338,6 +383,195 @@
         .venue-carousel img.active {
             opacity: 1;
         }
+		
+		/* Bridal Entourage Page Styling - UPDATED */
+		.entourage-page {
+			background: linear-gradient(to bottom, rgba(248,205,192,0.95), rgba(248,205,192,0.8));
+			padding: 10px 10px 20px 10px;
+            position: relative; /* Add position relative for shadow effects */
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1); /* Add the same box-shadow as other pages */
+		}
+        
+        /* Add the paper fold effect to match other pages */
+        .entourage-page::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.03) 100%);
+            pointer-events: none;
+            z-index: 1; /* Ensure this appears above the content */
+        }
+
+        /* Add subtle inner shadow to create depth */
+        .entourage-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+            pointer-events: none;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+		.entourage-page .page-title {
+			margin-top: 10px;
+			margin-bottom: 20px;
+			font-size: 22px;
+			font-weight: 500;
+			text-align: center;
+			font-family: 'Dancing Script', cursive;
+			color: #5c3c35;
+            position: relative; /* For text shadow */
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5); /* Subtle text shadow for depth */
+		}
+
+		.entourage-container {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+            position: relative;
+            z-index: 2;
+		}
+
+		.entourage-row {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+            position: relative;
+            z-index: 2;
+		}
+
+		.entourage-item {
+			width: 48%;
+			text-align: center;
+		}
+
+		.entourage-item h3 {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 2px;
+			color: #42312b;
+            position: relative;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+		}
+
+		.entourage-item p {
+			font-size: 14px;
+			margin: 0;
+			color: #42312b;
+		}
+
+		.entourage-center {
+			text-align: center;
+			width: 100%;
+			margin: 5px 0;
+            position: relative;
+            z-index: 2;
+		}
+
+		.entourage-center h3 {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 2px;
+			color: #42312b;
+            position: relative;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+		}
+
+		.entourage-center p {
+			font-size: 14px;
+			margin: 2px 0;
+			color: #42312b;
+		}
+
+		.entourage-sponsors {
+			width: 100%;
+			text-align: center;
+			margin-top: 10px;
+            position: relative;
+            z-index: 2;
+		}
+
+		.entourage-sponsors h3 {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 8px;
+			color: #42312b;
+            position: relative;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+		}
+
+		.sponsors-columns {
+			display: flex;
+			justify-content: center;
+			gap: 30px;
+            position: relative;
+		}
+
+        .sponsors-columns::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            height: 90%;
+            width: 1px;
+            background: rgba(66, 49, 43, 0.1);
+            transform: translateX(-50%);
+        }
+
+		.sponsors-column {
+			text-align: left;
+		}
+
+		.sponsors-column p {
+			font-size: 14px;
+			margin: 2px 0;
+			color: #42312b;
+		}
+		
+		/* Custom scrollbar styling for all scrollable areas */
+		.page-text::-webkit-scrollbar,
+		.page-content div::-webkit-scrollbar {
+			width: 6px;
+		}
+
+		.page-text::-webkit-scrollbar-track,
+		.page-content div::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		.page-text::-webkit-scrollbar-thumb,
+		.page-content div::-webkit-scrollbar-thumb {
+			background-color: rgba(92, 60, 53, 0.4);
+			border-radius: 10px;
+		}
+		
+		.title-divider {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			margin: 0 auto 15px auto;
+			max-width: 250px;
+		}
+
+		.title-divider::before,
+		.title-divider::after {
+			content: "";
+			flex: 1;
+			border-bottom: 1px solid #5c3c35;
+		}
+
+		.title-divider .heart-icon {
+			margin: 0 10px;
+			font-size: 14px;
+			color: #5c3c35;
+		}
     </style>
 </head>
 <body>
@@ -348,40 +582,50 @@
             <!-- Cover Page -->
             <div class="page cover active" data-index="0">
                 <div class="cover-image-container">
-                    <img src="coverpage.jpg" alt="Garden background" class="cover-image">
+                   <img src="coverpage.jpg" alt="Garden background" class="cover-image">
                 </div>
                 <div class="cover-content">
-                    <h1 class="cover-title">Claire and Rovel</h1>
-                </div>
-            </div>
+                   <h1 class="cover-title">Claire & Rovel</h1>
+                <p class="cover-date">July 12, 2025</p>
+           </div>
+          </div>
             
             <!-- Page 1 -->
-<div class="page" data-index="1">
-    <div class="page-content banner-layout">
-        <img src="couplephoto.jpg" alt="Couple photo" class="page-image">
-        <h2 class="page-title">Our Story</h2>
-        <p class="page-text">
-            Tulad ng mga bituing nakatakdang bumuo ng isang konstelasyon, hindi namin alam na ang aming mga buhay ay nakahanay na bago pa man namin nakilala ang isa't isa. 
-            <br><br>
-            Ang uniberso ay kumilos sa maraming paraan: sa isang concert ng Incubus sa Pilipinas, kami ay huminga ng parehong hangin at nakinig sa parehong musika, nakaupo lamang ilang hilera ang pagitan ngunit hindi alam ang presensya ng bawat isa. Araw-araw, habang nagbibisikleta ako sa mga kalye ng lungsod, dinadaanan ko ang kanyang pinagtatrabahuhan, marahil nakakakita ng sulyap ng isa't isa sa mga bintana o pintuan nang hindi nalalaman ang kahalagahan. Pagkatapos ay dumating ang kakaibang araw na iyon nang nagkaroon ng problema ang aking GPS sa isang paglalakbay sa bisikleta, inililihis ako mula sa aking nilalayong daan patungo sa rutang para sa mga kotse, na sa huli ay ginagabayan ako papunta sa malapit sa kanyang bahay—na para bang may kosmikong kamay na nagsasanay para sa aming mga pagtatagpo sa hinaharap. Maging ang aming mga pamilya ay tila umaawit ng parehong tono ng nakatakdang koneksyon: ang kanyang ama ay may parehong pangalan ng akin, ang mga pangalan ng kanyang mga kapatid na Rommel at Rodel ay kapansin-pansing umaawit katulad ng aking Rovel, na lumilikha ng kamangha-manghang salamin sa pagitan ng aming mga buhay. At sa isa pang kakaibang pangyayari, ang kanyang kapatid ay tinatawag na Rjay, kapareho ng pangalan ng aking matalik na kaibigan. 
-            <br><br>
-            Nang sa wakas ay nagkakilala kami online, natuklasan ang isang kagiliw-giliw na detalye pagkatapos ng isa pa tungkol sa isa't isa, ang mga pagkakatulad na ito ay nagsimulang maghayag ng kanilang mga sarili tulad ng mga piraso ng puzzle na bumabagsak sa lugar. Sa bawat pag-uusap, bawat interes at pagkakataong pinaghahatian, lalong tumitibay ang aming paniniwala na ang tinatawag ng iba na "red string theory" ay tahimik, matiyagang humihila sa amin nang magkasama—na nagpapatunay na minsan, ang pag-ibig ay hindi lang basta nangyayari; ito ay laging nakatakda.
-            <br><br>
-            ❀❀❀<br>
-            <i><br>
-            Like stars destined to form a constellation, our lives were invisibly aligned long before we knew each other existed. 
-            <br><br>
-            The universe conspired in countless ways: at an Incubus concert in the Philippines, we breathed the same air and shared the same music, seated mere rows apart yet unaware of each other's presence. Daily, as I pedaled my bicycle through the city streets, I passed by her workplace, perhaps catching glimpses of each other through windows or doorways without knowing the significance. Then came that curious day when my GPS malfunctioned during a bike trip, redirecting me from my intended path to a route meant for cars, ultimately guiding me near her home—as if some cosmic hand was rehearsing our future encounters. Even our families seemed to echo this predestined connection: her father bears the same name as mine, her brother's name Rommel resonates with my own Rovel, creating an uncanny mirror between our lives. And in yet another twist of serendipity, her brother goes by Rjay, identical to my best friend's name. 
-            <br><br>
-            When we finally connected online, discovering one fascinating detail after another about each other, these parallels began to reveal themselves like puzzle pieces falling into place. With each conversation, each shared interest and coincidence, we grew more certain that what some call the "red string of fate" had been quietly, patiently drawing us together all along—proving that sometimes, love doesn't just happen; it was always meant to be.         
-        </p>
-    </div>
-</div>
+			<div class="page" data-index="1">
+				<div class="page-content banner-layout">
+					<h2 class="page-title">Our Story</h2>
+					<div class="title-divider">
+					<span class="heart-icon">❤</span>
+					</div>
+					<img src="couplephoto.jpg" alt="Couple photo" class="page-image">        
+					<p class="page-text">
+						Tulad ng mga bituing nakatakdang bumuo ng isang konstelasyon, hindi namin alam na ang aming mga buhay ay nakahanay na bago pa man namin nakilala ang isa't isa. 
+						<br><br>
+						Ang uniberso ay kumilos sa maraming paraan: sa isang concert ng Incubus sa Pilipinas, kami ay huminga ng parehong hangin at nakinig sa parehong musika, nakaupo lamang ilang hilera ang pagitan ngunit hindi alam ang presensya ng bawat isa. Araw-araw, habang nagbibisikleta ako sa mga kalye ng lungsod, dinadaanan ko ang kanyang pinagtatrabahuhan, marahil nakakakita ng sulyap ng isa't isa sa mga bintana o pintuan nang hindi nalalaman ang kahalagahan. Pagkatapos ay dumating ang kakaibang araw na iyon nang nagkaroon ng problema ang aking GPS sa isang paglalakbay sa bisikleta, inililihis ako mula sa aking nilalayong daan patungo sa rutang para sa mga kotse, na sa huli ay ginagabayan ako papunta sa malapit sa kanyang bahay—na para bang may kosmikong kamay na nagsasanay para sa aming mga pagtatagpo sa hinaharap. Maging ang aming mga pamilya ay tila umaawit ng parehong tono ng nakatakdang koneksyon: ang kanyang ama ay may parehong pangalan ng akin, ang mga pangalan ng kanyang mga kapatid na Rommel at Rodel ay kapansin-pansing umaawit katulad ng aking Rovel, na lumilikha ng kamangha-manghang salamin sa pagitan ng aming mga buhay. At sa isa pang kakaibang pangyayari, ang kanyang kapatid ay tinatawag na Rjay, kapareho ng pangalan ng aking matalik na kaibigan. 
+						<br><br>
+						Nang sa wakas ay nagkakilala kami online, natuklasan ang isang kagiliw-giliw na detalye pagkatapos ng isa pa tungkol sa isa't isa, ang mga pagkakatulad na ito ay nagsimulang maghayag ng kanilang mga sarili tulad ng mga piraso ng puzzle na bumabagsak sa lugar. Sa bawat pag-uusap, bawat interes at pagkakataong pinaghahatian, lalong tumitibay ang aming paniniwala na ang tinatawag ng iba na "red string theory" ay tahimik, matiyagang humihila sa amin nang magkasama—na nagpapatunay na minsan, ang pag-ibig ay hindi lang basta nangyayari; ito ay laging nakatakda.
+						<br><br>
+						❀❀❀<br>
+						<i><br>
+						Like stars destined to form a constellation, our lives were invisibly aligned long before we knew each other existed. 
+						<br><br>
+						The universe conspired in countless ways: at an Incubus concert in the Philippines, we breathed the same air and shared the same music, seated mere rows apart yet unaware of each other's presence. Daily, as I pedaled my bicycle through the city streets, I passed by her workplace, perhaps catching glimpses of each other through windows or doorways without knowing the significance. Then came that curious day when my GPS malfunctioned during a bike trip, redirecting me from my intended path to a route meant for cars, ultimately guiding me near her home—as if some cosmic hand was rehearsing our future encounters. Even our families seemed to echo this predestined connection: her father bears the same name as mine, her brother's name Rommel resonates with my own Rovel, creating an uncanny mirror between our lives. And in yet another twist of serendipity, her brother goes by Rjay, identical to my best friend's name. 
+						<br><br>
+						When we finally connected online, discovering one fascinating detail after another about each other, these parallels began to reveal themselves like puzzle pieces falling into place. With each conversation, each shared interest and coincidence, we grew more certain that what some call the "red string of fate" had been quietly, patiently drawing us together all along—proving that sometimes, love doesn't just happen; it was always meant to be.         
+					</p>
+				</div>
+			</div>
             
             <!-- Page 2 -->
             <div class="page" data-index="2">
                 <div class="page-content venue-page">
-                    <div class="venue-carousel">
+                    <h2 class="page-title">Ceremony & Reception</h2>
+					
+					<div class="title-divider">
+					<span class="heart-icon">❤</span>
+					</div>
+					
+					<div class="venue-carousel">
                         <img src="venue1.jpg" alt="Venue photo 1" class="active">
                         <img src="venue2.jpg" alt="Venue photo 2">
                         <img src="venue3.jpg" alt="Venue photo 3">
@@ -391,37 +635,194 @@
                         <img src="venue7.jpg" alt="Venue photo 7"> 
                         <!-- Add more images as needed -->
                     </div>
-                    <h2 class="page-title">Ceremony & Reception</h2>
-                    <p class="page-text">The ceremony will begin at 4:00 PM in the Rose Garden at Hillcrest Manor. The reception will follow immediately after in the Grand Pavilion. Please join us for an evening of dinner, dancing, and celebration beneath the stars.</p>
+                    
+					<p class="page-text">The ceremony will begin at 4:00 PM in the Rose Garden at Hillcrest Manor. The reception will follow immediately after in the Grand Pavilion. Please join us for an evening of dinner, dancing, and celebration beneath the stars.</p>
                 </div>
             </div>
             
             <!-- Page 3 -->
             <div class="page" data-index="3">
                 <div class="page-content">
-                    <img src="/api/placeholder/800/600" alt="Map photo" class="page-image">
                     <h2 class="page-title"><b>Lokasyon</b></h2>
-                    <p class="page-text">Tree House Mansion Restaurant & Events Place<br>Aguinaldo Highway,<br>Lalaan II, Silang, Cavite<br><br>Complimentary valet parking will be available. A shuttle service will run from the Hampton Inn downtown starting at 3:00 PM.</p>
+					<div class="title-divider">
+					<span class="heart-icon">❤</span>
+					</div>
+                    <p class="page-text">Tree House Mansion Restaurant & Events Place<br>Lalaan II, Leynes Street<br>Silang, Cavite<br><br>Complimentary valet parking will be available. A shuttle service will run from the Hampton Inn downtown starting at 3:00 PM.</p><br>
+                    <p class="page-text"><a href="https://www.google.com/maps/dir//Tree+House+Mansion,+Silang,+Cavite/@14.1556267,120.9557347,19z/data=!4m16!1m7!3m6!1s0x33bd79ece93ecc2f:0x120f4b67dc31fbe2!2sTree+House+Mansion!8m2!3d14.1556297!4d120.9556983!16s%2Fg%2F11g6d88k4q!4m7!1m0!1m5!1m1!1s0x33bd79ece93ecc2f:0x120f4b67dc31fbe2!2m2!1d120.9556983!2d14.1556297" target="_blank" style="color: #5c3c35; font-weight: bold; text-decoration: underline;">Direksyon</a></p><br>
+                    <div class="map-container" style="width: 100%; height: 65%; overflow: auto; margin-bottom: 10px; border-radius: 5px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d483.5834493369961!2d120.95569825944891!3d14.155629738034332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd79ece93ecc2f%3A0x120f4b67dc31fbe2!2sTree%20House%20Mansion!5e0!3m2!1sen!2sph!4v1746068286399!5m2!1sen!2sph" 
+                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
             
-            <!-- Page 4 -->
-            <div class="page" data-index="4">
-                <div class="page-content">
-                    <img src="/api/placeholder/800/600" alt="Food photo" class="page-image">
-                    <h2 class="page-title">Dinner & Dancing</h2>
-                    <p class="page-text">We'll be serving a farm-to-table seasonal menu featuring locally sourced ingredients. Please indicate any dietary restrictions when you RSVP. After dinner, join us on the dance floor as we celebrate into the evening with music by The Garden City Band.</p>
-                </div>
-            </div>
+			<!-- Page 4 - Wedding Motif -->
+			<div class="page" data-index="4">
+				<div class="page-content">
+					<h2 class="page-title">Wedding Motif & Details</h2>
+					<div class="title-divider">
+					<span class="heart-icon">❤</span>
+					</div>
+					<div style="width: 100%; max-height: 75%; overflow-y: auto; margin-bottom: 10px; padding: 0 5px;">
+						<div style="text-align: center; margin-bottom: 15px;">
+							<h3 style="font-size: 18px; margin-bottom: 5px; color: #42312b;">Gayak</h3>
+							<h4 style="font-size: 16px; margin-bottom: 10px; color: #42312b;">(Pormal)</h4>
+							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 14px;">
+								Mangyaring magsuot ng maayos at angkop na kasuotan. Mahigpit po naming ipinatatakdaan ang tamang porma ng pananamit para sa okasyon.
+							</p>
+						</div>
+						
+						<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+							<div style="width: 48%; text-align: center;">
+								<h3 style="font-size: 16px; margin-bottom: 5px; color: #42312b;">Ninang</h3>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Filipiniana</p>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Modern Filipiniana</p>
+							</div>
+							<div style="width: 48%; text-align: center;">
+								<h3 style="font-size: 16px; margin-bottom: 5px; color: #42312b;">Ninong</h3>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Barong Tagalog</p>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Itim na Pantalon</p>
+							</div>
+						</div>
+						
+						<h3 style="font-size: 18px; text-align: center; margin-bottom: 10px; color: #42312b;">Kaibigan at Pamilya</h3>
+						
+						<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+							<div style="width: 48%; text-align: center;">
+								<h3 style="font-size: 16px; margin-bottom: 5px; color: #42312b;">Binibini</h3>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Filipiniana</p>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Modern Filipiniana</p>
+							</div>
+							<div style="width: 48%; text-align: center;">
+								<h3 style="font-size: 16px; margin-bottom: 5px; color: #42312b;">Ginoo</h3>
+								<p style="color: #42312b; margin: 0; font-size: 14px;">Barong o Polo</p>
+							</div>
+						</div>
+						
+						<div style="text-align: center; margin-bottom: 15px;">
+							<h3 style="font-size: 16px; margin-bottom: 5px; color: #42312b;">Gabay sa Kulay:</h3>
+							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 14px;">
+								Rustic Filipiniana
+							</p>
+						</div>
+						
+						<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #F5CF48;"></div>
+							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #E53935;"></div>
+							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #4CAF50;"></div>
+							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #2196F3;"></div>
+							<div style="width: 30px; height: 30px; border-radius: 50%; background-color: #9C27B0;"></div>
+						</div>
+						
+						<!-- Updated vertical layout -->
+						<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+							<img src="motif1.jpg" alt="Filipiniana Style" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+							<img src="motif2.jpg" alt="Barong Style" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+							<img src="motif3.jpg" alt="Modern Filipiniana" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+							<img src="motif4.jpg" alt="Color Theme" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+							<img src="motif5.jpg" alt="Rustic Decor" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+						</div>
+					</div>
+				</div>
+			</div>
             
-            <!-- Page 5 -->
-            <div class="page" data-index="5">
+			
+            <!-- Page 5 - Bridal Entourage (MOVED INSIDE BOOK CONTAINER) -->
+			<div class="page" data-index="5">
+				<div class="page-content">
+					<h2 class="page-title">The Bridal Entourage</h2>
+					<div class="title-divider">
+					<span class="heart-icon">❤</span>
+					</div>
+					<div style="width: 100%; max-height: 80%; overflow-y: auto; margin-bottom: 10px; padding: 0 5px;">
+						<div class="entourage-container" style="display: flex; flex-direction: column; gap: 15px; position: relative; z-index: 2;">
+							<div class="entourage-row" style="display: flex; justify-content: space-between; width: 100%; position: relative; z-index: 2;">
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Bestman</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Russell Jayson Jose</p>
+								</div>
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Maid of Honor</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Che Aguil-De Guzman</p>
+								</div>
+							</div>
+							
+							<div class="entourage-row" style="display: flex; justify-content: space-between; width: 100%; position: relative; z-index: 2;">
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Ring Bearer</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Eashan</p>
+								</div>
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Coin Bearer</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Vjay</p>
+								</div>
+							</div>
+							
+							<div class="entourage-row" style="display: flex; justify-content: space-between; width: 100%; position: relative; z-index: 2;">
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Bible Bearer</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Full Name</p>
+								</div>
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Viel</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Klynn</p>
+								</div>
+							</div>
+							
+							<div class="entourage-row" style="display: flex; justify-content: space-between; width: 100%; position: relative; z-index: 2;">
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Cord</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Chesney</p>
+								</div>
+								<div class="entourage-item" style="width: 48%; text-align: center;">
+									<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Candle</h3>
+									<p style="font-size: 14px; margin: 0; color: #42312b;">Dawn2x</p>
+								</div>
+							</div>
+							
+							<div class="entourage-center" style="text-align: center; width: 100%; margin: 5px 0; position: relative; z-index: 2;">
+								<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 2px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Flower Girls</h3>
+								<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Ma. Samantha Claire</p>
+								<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Kyota</p>
+								<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Zia</p>
+							</div>
+							
+							<div class="entourage-sponsors" style="width: 100%; text-align: center; margin-top: 10px; position: relative; z-index: 2;">
+								<h3 style="font-size: 16px; font-weight: bold; margin-bottom: 8px; color: #42312b; position: relative; text-shadow: 0 1px 1px rgba(255,255,255,0.4);">Principal Sponsors</h3>
+								<div class="sponsors-columns" style="display: flex; justify-content: center; gap: 30px; position: relative;">
+									<div class="sponsors-column" style="text-align: left;">
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mr. Full Name</p>
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mr. Full Name</p>
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mr. Full Name</p>
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mr. Full Name</p>
+									</div>
+									<div class="sponsors-column" style="text-align: left;">
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mrs. Full Name</p>
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mrs. Full Name</p>
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mrs. Full Name</p>
+										<p style="font-size: 14px; margin: 2px 0; color: #42312b;">Mrs. Full Name</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+			
+            <!-- Page 6 -->
+            <div class="page" data-index="6">
                 <div class="page-content">
-                    <img src="/api/placeholder/800/600" alt="RSVP photo" class="page-image">
                     <h2 class="page-title">RSVP</h2>
-                    <p class="page-text">We look forward to celebrating with you! Please respond by April 15, 2025.<br><br>Visit our wedding website at:<br>sarahandjames.com<br><br>Or contact us at:<br>wedding@sarahandjames.com</p>
+					<div class="title-divider">
+					<span class="heart-icon">❤</span>
+					</div>
+					 <img src="/api/placeholder/800/600" alt="RSVP photo" class="page-image">
+                    <p class="page-text">We look forward to celebrating with you! Please respond by April 15, 2025.<br><br>Visit our wedding website at:<br>https://thech0senlegacy.github.io/rovelclaire/<br><br>Or contact us at:<br>rovel.herona@gmail.com | +63 975 161 1653<br>claireaugil@gmail.com | +63 975 161 1653</p>
                 </div>
             </div>
+           
+			
+			
         </div>
     </div>
     
@@ -432,9 +833,10 @@
         <div class="indicator" data-index="3"></div>
         <div class="indicator" data-index="4"></div>
         <div class="indicator" data-index="5"></div>
+        <div class="indicator" data-index="6"></div>
     </div>
     
-    <div class="floral-decoration decoration-1">
+        <div class="floral-decoration decoration-1">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <path d="M50,0 C60,20 80,30 100,30 C80,40 60,60 50,100 C40,60 20,40 0,30 C20,30 40,20 50,0" fill="#5c3c35"/>
         </svg>
