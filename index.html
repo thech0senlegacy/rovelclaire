@@ -1411,6 +1411,14 @@
 			const galleryImages = document.querySelectorAll('.gallery-slide img');
 			const galleryIndicators = document.getElementById('galleryIndicators');
 			let currentGalleryIndex = 0;
+			
+			// Add touch-specific event listeners for mobile
+			openGalleryBtn.addEventListener('touchstart', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				galleryModal.style.display = 'flex';
+				document.body.style.overflow = 'hidden';
+			});
 
 			// Create indicators
 			galleryImages.forEach((_, index) => {
@@ -1424,7 +1432,8 @@
 			const indicatorDots = document.querySelectorAll('.gallery-indicator');
 
 			// Open gallery
-			openGalleryBtn.addEventListener('click', (e) => {
+			// Enhanced click handler
+			openGalleryBtn.addEventListener('click', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				galleryModal.style.display = 'flex';
@@ -1506,6 +1515,24 @@
 				
 				galleryImages[currentGalleryIndex].classList.add('active');
 				indicatorDots[currentGalleryIndex].classList.add('active');
+			}
+			
+			// Modified touch event handlers for page navigation
+			function handleTouchStart(e) {
+				if (galleryModal.style.display === 'flex') return;
+				// Store the target element
+				const touch = e.touches[0];
+				this.touchTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+				touchStartX = touch.clientX;
+			}
+
+			function handleTouchEnd() {
+				if (galleryModal.style.display === 'flex') return;
+				// Check if touch started and ended on gallery link
+				if (this.touchTarget && this.touchTarget.closest('#openGallery')) {
+					return;
+				}
+				handleSwipe();
 			}
 	
 			
