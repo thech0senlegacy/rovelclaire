@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Wedding Flipbook</title>
+    <title>Kasal ni : Claire at Rovel</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Dancing+Script:wght@400;600&family=Rock+Salt&family=Lilita+One&family=Oswald:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Dancing+Script:wght@400;600&family=Cal+Sans&family=Lilita+One&family=Oswald:wght@400;500&display=swap');
         
         * {
             margin: 0;
@@ -26,7 +26,7 @@
         }
 		
 		h1 {
-            font-family: 'Rock Salt', serif;
+            font-family: 'Cal Sans', serif;
         }
         
         body, p, h1, h2, h3, div, span {
@@ -254,7 +254,7 @@
            font-size: 13px;
            
            }
-/* end code for the banner */   
+		/* end code for the banner */   
      
         .indicator {
             width: 10px;
@@ -568,6 +568,177 @@
 			font-size: 14px;
 			color: #5c3c35;
 		}
+		
+		/* Motif Image Hover */
+		.page[data-index="4"] img {
+			transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+			transform-origin: center;
+			cursor: pointer;
+		}
+
+		.page[data-index="4"] img:hover {
+			transform: scale(1.05) translateY(-5px);
+			box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+			z-index: 10;
+			position: relative;
+		}
+
+		/* Add a caption that appears on hover */
+		.motif-container {
+			position: relative;
+			margin-bottom: 20px;
+		}
+
+		.motif-caption {
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			font-size: 14px;
+			color: #5c3c35;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		.motif-container:hover .motif-caption {
+			opacity: 1;
+		}
+		
+		/* Gallery Modal Styles */
+		.gallery-modal {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.9);
+			z-index: 1000;
+			overflow: hidden;
+		}
+
+		.gallery-content {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.gallery-slide {
+			width: 90%;
+			height: 80%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.gallery-slide img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain;
+			border-radius: 5px;
+			position: absolute;
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+		
+		.gallery-slide img.active {
+			opacity: 1;
+			z-index: 1;
+		}
+
+		.gallery-nav {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			padding: 0 20px;
+			transform: translateY(-50%);
+			z-index: 10;
+		}
+
+		.gallery-nav button {
+			background: rgba(248, 205, 192, 0.7);
+			border: none;
+			color: #42312b;
+			font-size: 24px;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			cursor: pointer;
+			transition: all 0.3s;
+		}
+
+		.gallery-nav button:hover {
+			background: rgba(248, 205, 192, 0.9);
+		}
+
+		.gallery-close {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			background: rgba(248, 205, 192, 0.7);
+			border: none;
+			color: #42312b;
+			font-size: 24px;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			cursor: pointer;
+			transition: all 0.3s;
+		}
+
+		.gallery-close:hover {
+			background: rgba(248, 205, 192, 0.9);
+		}
+
+		.gallery-indicators {
+			position: absolute;
+			bottom: 20px;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			z-index: 10;
+		}
+
+		.gallery-indicator {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background-color: rgba(248, 205, 192, 0.5);
+			cursor: pointer;
+			transition: all 0.3s;
+		}
+
+		.gallery-indicator.active {
+			background-color: rgba(248, 205, 192, 0.9);
+			transform: scale(1.2);
+		}
+
+		.gallery-link {
+			display: inline-block;
+			margin-top: 15px;
+			padding: 10px 20px;
+			background-color: #5c3c35;
+			color: #F8CDC0;
+			border-radius: 5px;
+			text-decoration: none;
+			font-weight: 500;
+			transition: all 0.3s;
+		}
+
+		.gallery-link:hover {
+			background-color: #42312b;
+			transform: translateY(-2px);
+		}
+		
     </style>
 </head>
 <body>
@@ -581,7 +752,7 @@
                    <img src="coverpage.jpg" alt="Garden background" class="cover-image">
                 </div>
                 <div class="cover-content">
-                   <h1 class="cover-title">Claire at Rovel</h1>
+                   <h1 class="cover-title"></h1>
                 <p class="cover-date">JULY 12, 2025</p>
            </div>
           </div>
@@ -669,17 +840,15 @@
 				<div class="page-content">
 					<h2 class="page-title">GAYAK AT KULAY</h2>
 					<div class="title-divider">
-					<span class="heart-icon">❤</span>
+						<span class="heart-icon">❤</span>
 					</div>
 					<div style="width: 100%; max-height: 75%; overflow-y: auto; margin-bottom: 10px; padding: 0 5px;">
 						<div style="text-align: center; margin-bottom: 15px;">
-						<!--	<h3 style="font-size: 18px; margin-bottom: 5px; color: #42312b;">Gayak at Kulay</h3> -->
-						<!--	<h4 style="font-size: 16px; margin-bottom: 10px; color: #42312b;">(Pormal)</h4> -->
 							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 13px;">
 								Mangyaring magsuot ng maayos at angkop na kasuotan. Mahigpit po naming ipinatatakdaan ang tamang porma ng pananamit para sa okasyon.
 							</p>
 							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 13px;">
-                                Iwasan lamang pong mag-suot ng maong na pantalon at tsinelas.
+								Iwasan lamang pong mag-suot ng maong na pantalon at tsinelas.
 							</p>
 						</div>
 						
@@ -719,50 +888,171 @@
 							<p style="font-style: italic; margin-bottom: 10px; color: #42312b; font-size: 14px;">
 								Rustic Filipiniana, Terracotta
 							</p>
-
 						</div>
 						
 						<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 5px;">
 							<div style="display: flex; flex-direction: column; align-items: center;">
-								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #F5F5DC;"></div>
+								<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #F5F5DC;"></div>
 								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Beige</p>
 							</div>
 							<div style="display: flex; flex-direction: column; align-items: center;">
-								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #E1BE9B;"></div>
+								<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #E1BE9B;"></div>
 								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Sand</p>
 							</div>
 							<div style="display: flex; flex-direction: column; align-items: center;">
-								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #D69264;"></div>
-								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Terracotta</p>
+								<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #D69264;"></div>
+								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Caramel</p>
 							</div>
 						</div>
 						<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
 							<div style="display: flex; flex-direction: column; align-items: center;">
-								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #DEC2AF;"></div>
+								<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #DEC2AF;"></div>
 								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Almond</p>
 							</div>
 							<div style="display: flex; flex-direction: column; align-items: center;">
-								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #A0A088;"></div>
+								<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #A0A088;"></div>
 								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Sage</p>
 							</div>
 							<div style="display: flex; flex-direction: column; align-items: center;">
-								<div style="width: 60px; height: 60px; border-radius: 50%; background-color: #747C70;"></div>
+								<div style="width: 80px; height: 80px; border-radius: 50%; background-color: #747C70;"></div>
 								<p style="font-size: 12px; margin-top: 5px; color: #42312b;">Olive</p>
 							</div>
 						</div>
 						
-						<!-- Updated vertical layout -->
-						<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-							<img src="motif1.jpg" alt="Filipiniana Style" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-							<img src="motif2.jpg" alt="Barong Style" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-							<img src="motif3.jpg" alt="Modern Filipiniana" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-							<img src="motif4.jpg" alt="Color Theme" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-							<img src="motif5.jpg" alt="Rustic Decor" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+						<div style="text-align: center;">
+							<a href="#" class="gallery-link" id="openGallery">Mga Tema at Kulay</a>
 						</div>
+						
+						<div style="width: 100%; max-height: 75%; overflow-y: auto; margin-bottom: 10px; padding: 0 5px;">
+							<!-- Keep your existing dress code text here -->
+							
+							<h3 style="font-size: 18px; text-align: center; margin: 20px 0 10px 0; color: #42312b;"></h3>
+							
+							<!-- Row 1 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motifbeige.jpg" alt="Rustic Filipiniana" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Classic Beige Filipiniana</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif2.jpg" alt="Modern Barong" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Terracotta Barong</p>
+								</div>
+							</div>
+							
+							<!-- Row 2 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motifsand.jpg" alt="Modern Filipiniana" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Modern Filipiniana</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif4.jpg" alt="Sand Tone Outfit" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Sand Tone Ensemble</p>
+								</div>
+							</div>
+							
+							<!-- Row 3 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motifsand1.jpg" alt="Caramel Dress" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Caramel Filipiniana</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif1.jpg" alt="Almond Barong" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Almond Barong</p>
+								</div>
+							</div>
+							
+							<!-- Row 4 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motifcaramel.jpg" alt="Sage Gown" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Sage Green Gown</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif3.jpg" alt="Olive Outfit" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Olive Barong</p>
+								</div>
+							</div>
+							
+							<!-- Row 5 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motif4.jpg" alt="Terracotta Dress" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Terracotta Gown</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif5.jpg" alt="Beige Barong" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Beige Barong</p>
+								</div>
+							</div>
+							
+							<!-- Row 6 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motifsage.jpg" alt="Rustic Centerpiece" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Rustic Table Setting</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif2.jpg" alt="Bridal Bouquet" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Terracotta Bouquet</p>
+								</div>
+							</div>
+							
+							<!-- Row 7 -->
+							<div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+								<div style="width: 48%; text-align: center;">
+									<img src="motifolive.jpg" alt="Color Palette" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Color Palette</p>
+								</div>
+								<div style="width: 48%; text-align: center;">
+									<img src="motif1.jpg" alt="Bridal Entourage" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+									<p style="font-size: 12px; color: #42312b;">Entourage Style</p>
+								</div>
+							</div>
+							
+							<!-- Single centered image for Row 8 -->
+							<div style="text-align: center; margin-bottom: 15px;">
+								<img src="motif5.jpg" alt="Complete Look" style="width: 100%; max-width: 300px; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">
+								<p style="font-size: 12px; color: #42312b;">Complete Wedding Look</p>
+							</div>
+						</div>
+						
+						
 					</div>
 				</div>
 			</div>
-            
+
+			<!-- Gallery Modal -->
+			<div class="gallery-modal" id="galleryModal">
+				<div class="gallery-content">
+					<button class="gallery-close" id="closeGallery">&times;</button>
+					
+					<div class="gallery-nav">
+						<button id="prevBtn">&lt;</button>
+						<button id="nextBtn">&gt;</button>
+					</div>
+					
+					<div class="gallery-slide">
+						<img src="motif1.jpg" alt="Filipiniana Style" class="active">
+						<img src="motif2.jpg" alt="Barong Style">
+						<img src="motif3.jpg" alt="Modern Filipiniana">
+						<img src="motif4.jpg" alt="Color Theme">
+						<img src="motif5.jpg" alt="Rustic Decor">
+						<img src="motifbeige.jpg" alt="Filipiniana Style">
+						<img src="motifsand.jpg" alt="Barong Style">
+						<img src="motifsand1.jpg" alt="Modern Filipiniana">
+						<img src="motifcaramel.jpg" alt="Color Theme">
+						<img src="motifsage.jpg" alt="Rustic Decor">
+						<img src="motifolive.jpg" alt="Rustic Decor">
+					</div>
+					
+					<div class="gallery-indicators" id="galleryIndicators">
+						<!-- Indicators will be added by JavaScript -->
+					</div>
+				</div>
+			</div>
 			
             <!-- Page 5 - Bridal Entourage (MOVED INSIDE BOOK CONTAINER) -->
 			<div class="page" data-index="5">
@@ -880,17 +1170,7 @@
         <div class="indicator" data-index="6"></div>
     </div>
     
-        <div class="floral-decoration decoration-1">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50,0 C60,20 80,30 100,30 C80,40 60,60 50,100 C40,60 20,40 0,30 C20,30 40,20 50,0" fill="#5c3c35"/>
-        </svg>
-    </div>
-    
-    <div class="floral-decoration decoration-2">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50,0 C60,20 80,30 100,30 C80,40 60,60 50,100 C40,60 20,40 0,30 C20,30 40,20 50,0" fill="#5c3c35"/>
-        </svg>
-    </div>
+
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -966,38 +1246,44 @@
             }
             
             // Touch event handlers
-            function handleTouchStart(e) {
-                touchStartX = e.touches[0].clientX;
-            }
-            
-            function handleTouchMove(e) {
-                touchEndX = e.touches[0].clientX;
-            }
-            
-            function handleTouchEnd() {
-                handleSwipe();
-            }
-            
-            // Mouse event handlers (for desktop testing)
-            let isMouseDown = false;
-            
-            function handleMouseDown(e) {
-                isMouseDown = true;
-                touchStartX = e.clientX;
-            }
-            
-            function handleMouseMove(e) {
-                if (isMouseDown) {
-                    touchEndX = e.clientX;
-                }
-            }
-            
-            function handleMouseUp() {
-                if (isMouseDown) {
-                    handleSwipe();
-                    isMouseDown = false;
-                }
-            }
+			function handleTouchStart(e) {
+				if (galleryModal.style.display === 'flex') return;
+				touchStartX = e.touches[0].clientX;
+			}
+
+			function handleTouchMove(e) {
+				if (galleryModal.style.display === 'flex') return;
+				touchEndX = e.touches[0].clientX;
+			}
+
+			function handleTouchEnd() {
+				if (galleryModal.style.display === 'flex') return;
+				handleSwipe();
+			}
+
+			// Mouse event handlers (for desktop testing)
+			let isMouseDown = false;
+
+			function handleMouseDown(e) {
+				if (galleryModal.style.display === 'flex') return;
+				isMouseDown = true;
+				touchStartX = e.clientX;
+			}
+
+			function handleMouseMove(e) {
+				if (galleryModal.style.display === 'flex') return;
+				if (isMouseDown) {
+					touchEndX = e.clientX;
+				}
+			}
+
+			function handleMouseUp() {
+				if (galleryModal.style.display === 'flex') return;
+				if (isMouseDown) {
+					handleSwipe();
+					isMouseDown = false;
+				}
+			}
             
             // Optimized swipe handler with debounce
             let lastSwipeTime = 0;
@@ -1115,7 +1401,117 @@
 
             // Initialize carousel when page loads
             setupVenueCarousel();
+			
+			// Gallery functionality - MOVED INSIDE DOMContentLoaded
+			const galleryModal = document.getElementById('galleryModal');
+			const openGalleryBtn = document.getElementById('openGallery');
+			const closeGalleryBtn = document.getElementById('closeGallery');
+			const prevBtn = document.getElementById('prevBtn');
+			const nextBtn = document.getElementById('nextBtn');
+			const galleryImages = document.querySelectorAll('.gallery-slide img');
+			const galleryIndicators = document.getElementById('galleryIndicators');
+			let currentGalleryIndex = 0;
+
+			// Create indicators
+			galleryImages.forEach((_, index) => {
+				const indicator = document.createElement('div');
+				indicator.classList.add('gallery-indicator');
+				if (index === 0) indicator.classList.add('active');
+				indicator.dataset.index = index;
+				galleryIndicators.appendChild(indicator);
+			});
+
+			const indicatorDots = document.querySelectorAll('.gallery-indicator');
+
+			// Open gallery
+			openGalleryBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				galleryModal.style.display = 'flex';
+				document.body.style.overflow = 'hidden';
+			});
+
+			// Close gallery
+			closeGalleryBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				galleryModal.style.display = 'none';
+				document.body.style.overflow = '';
+			});
+
+			// Previous image
+			prevBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				navigateGallery(-1);
+			});
+
+			// Next image
+			nextBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				navigateGallery(1);
+			});
+
+			// Indicator click
+			indicatorDots.forEach(indicator => {
+				indicator.addEventListener('click', (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					const targetIndex = parseInt(indicator.dataset.index);
+					goToGalleryImage(targetIndex);
+				});
+			});
+
+			// Keyboard navigation
+			document.addEventListener('keydown', (e) => {
+				if (galleryModal.style.display === 'flex') {
+					e.preventDefault();
+					if (e.key === 'ArrowLeft') {
+						navigateGallery(-1);
+					} else if (e.key === 'ArrowRight') {
+						navigateGallery(1);
+					} else if (e.key === 'Escape') {
+						galleryModal.style.display = 'none';
+						document.body.style.overflow = '';
+					}
+				}
+			});
+
+			// Prevent modal close when clicking inside
+			document.querySelector('.gallery-content').addEventListener('click', (e) => {
+				e.stopPropagation();
+			});
+
+			// Close when clicking outside content
+			galleryModal.addEventListener('click', (e) => {
+				if (e.target === galleryModal) {
+					e.preventDefault();
+					e.stopPropagation();
+					galleryModal.style.display = 'none';
+					document.body.style.overflow = '';
+				}
+			});
+
+			function navigateGallery(direction) {
+				const newIndex = (currentGalleryIndex + direction + galleryImages.length) % galleryImages.length;
+				goToGalleryImage(newIndex);
+			}
+
+			function goToGalleryImage(index) {
+				galleryImages[currentGalleryIndex].classList.remove('active');
+				indicatorDots[currentGalleryIndex].classList.remove('active');
+				
+				currentGalleryIndex = index;
+				
+				galleryImages[currentGalleryIndex].classList.add('active');
+				indicatorDots[currentGalleryIndex].classList.add('active');
+			}
+	
+			
+			
         });
+			
     </script>
 </body>
 </html>
